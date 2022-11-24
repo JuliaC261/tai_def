@@ -1,3 +1,26 @@
+<?php 
+
+if(isset($_FILES['arquivo'])) {
+    $arquivo = $_FILES['arquivo'];
+
+    if($arquivo['error'])
+    die("Falha ao carregar arquivo");
+
+    if($arquivo['size'] > 2097152)
+      die("arquivo muito grande! Max: 2mb");
+
+
+      $pasta = "arquivos/";
+}
+
+//criando uma consulta ao banco
+$sql_query = $mysqli -> query ("SELECT * FROM arquivos") or 
+   die($mysqli -> error);
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +37,15 @@
     <button name="upload" type="submit">Enviar arquivo</button>
 </form>
 
+<table>
+    
+</table>
+
+<?php 
+while($arquivo = $sql_query -> fetch_assoc()) {
+
+}
+?>
 
 </body>
 </html>
